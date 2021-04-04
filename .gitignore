@@ -1,15 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 .gradle
 .idea
-=======
-.idea
-.gradle
->>>>>>> 94797cceaaa008c5031a4e66503f32bdfbbef4e8
-=======
-.idea
-.gradle
->>>>>>> 94797cceaaa008c5031a4e66503f32bdfbbef4e8
+
 
 # Compiled class file
 *.class
