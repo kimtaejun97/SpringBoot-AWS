@@ -1,7 +1,6 @@
-package com.study.springBoot;
+package com.study.springboot.web;
 
 
-import com.study.springboot.web.HelloControllerDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,6 @@ public class HelloControllerDtoTest {
                         .param("amount", String.valueOf(amount)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is(name)))
-                .andExpect(jsonPath("$amount", is(amount)));
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
