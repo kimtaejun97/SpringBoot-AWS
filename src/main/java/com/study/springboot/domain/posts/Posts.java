@@ -1,5 +1,7 @@
 package com.study.springboot.domain.posts;
 
+import com.study.springboot.domain.BaseTimeEntity;
+import com.study.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,7 @@ import javax.persistence.*;
 @Getter //lombok
 @NoArgsConstructor //lombok
 @Entity //jpa, Table과 매칭될 클래스.
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
@@ -28,6 +30,11 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title =title;
+        this.content = content;
     }
 
 }
