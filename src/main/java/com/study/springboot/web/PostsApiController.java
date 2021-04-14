@@ -5,7 +5,6 @@ import com.study.springboot.web.dto.PostsResponseDto;
 import com.study.springboot.web.dto.PostsSaveRequestDto;
 import com.study.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -37,7 +36,5 @@ public class PostsApiController {
     public void delete(@PathVariable Long id){
         postsService.delete(id);
     }
-
-
 
 }
