@@ -20,7 +20,7 @@ public class PostsApiController {
     }
 
     //Read
-    @GetMapping("api/v1/posts/{id}")
+    @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
     }
@@ -33,8 +33,9 @@ public class PostsApiController {
 
     //Delete
     @DeleteMapping("/api/v1/posts/{id}")
-    public void delete(@PathVariable Long id){
+    public Long delete(@PathVariable Long id){
         postsService.delete(id);
+        return id;
     }
 
 }
