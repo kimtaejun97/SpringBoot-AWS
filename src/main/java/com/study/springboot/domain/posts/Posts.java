@@ -1,7 +1,6 @@
 package com.study.springboot.domain.posts;
 
 import com.study.springboot.domain.BaseTimeEntity;
-import com.study.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
