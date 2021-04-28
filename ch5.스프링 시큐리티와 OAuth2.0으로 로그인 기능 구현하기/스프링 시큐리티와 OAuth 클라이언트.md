@@ -1,0 +1,53 @@
+- Oauth를 사용하는 이유:
+
+    -로그인 보안
+
+    -회원가입시 이메일 혹은 전화번호 인증
+
+    -비밀번호 찾기, 변경
+
+    -회원정보 변경
+
+    이러한 기능들을 직접구현하지 않아도 되기 때문에 서비스 개발에 집중할 수 있음.  
+<br>
+-프로젝트 생성
+[https://console.cloud.google.com] 접속. 
+
+![image](https://user-images.githubusercontent.com/61380786/116430207-9a6cc800-a881-11eb-8018-63535fdbe8ff.png)
+<br>
+
+![image](https://user-images.githubusercontent.com/61380786/116430254-a5275d00-a881-11eb-9aa2-3b08d8e4c9ed.png)
+
+API 및 서비스 → 사용자 인증정보 만들기 →OAuth 클라이언트 ID 만들기
+
+<br>
+
+![image](https://user-images.githubusercontent.com/61380786/116432907-f1739c80-a883-11eb-8052-c98243dae8c8.png)
+
+:: 스프링 시큐리티에서는 기본적으로 {도메인}/login/oauth/code/google로 리다이렉트 URL을 지원.    
+별도의 Controller를 구현할 필요가 없음.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/61380786/116430817-267eef80-a882-11eb-96c5-5726553a6e3e.png)
+범위 추가.
+
+* src/main/resources/application-oauth.properties
+```
+spring.security.oauth2.client.registration.google.client-id= 클라이언트 ID
+spring.security.oauth2.client.registration.google.client-secret=클라이언트 보안 비밀
+spring.security.oauth2.client.registration.google.scope=profile,email
+```
+
+:: scope의 경우 별도로 등록하지 않으면 기본값이 openid,profile,email
+
+:: 스프링 부트에서는 properties의 이름을 application-xxx.properties로 지정하면 xxx라는 이름의 profile이 생성되어 profile = xxx 처럼
+  호출할 수 있음.
+  여기서는 기본 설정 파일인 application.properties에 이를 추가하여 포함하도록 구성.    
+
+```
+spring.profiles.include=oauth
+```
+
+설정파일이 git에 노출되는것을 막기위해 .gitignore에 추가
+ 
