@@ -46,6 +46,9 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
+    //스프링 시큐리티
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
 }
 
 test {
