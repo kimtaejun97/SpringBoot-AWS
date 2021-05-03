@@ -32,8 +32,6 @@ dependencies {
     compile('com.h2database:h2')
     compile('mysql:mysql-connector-java')
 
-    compile('org.springframework.session:spring-session-jdbc')
-
     //lombok
     compile('org.projectlombok:lombok')
 
@@ -48,6 +46,9 @@ dependencies {
 
     //스프링 시큐리티
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    //spring session jdbc
+    compile('org.springframework.session:spring-session-jdbc')
 
 }
 
