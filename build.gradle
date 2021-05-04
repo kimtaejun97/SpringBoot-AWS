@@ -43,12 +43,17 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    annotationProcessor('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
 
     //스프링 시큐리티
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 
     //spring session jdbc
     compile('org.springframework.session:spring-session-jdbc')
+
+    //스프링 시큐리티 테스트
+    testCompile('org.springframework.security:spring-security-test')
 
 }
 

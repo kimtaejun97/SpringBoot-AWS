@@ -1,2 +1,10 @@
-com/study/springBoot/HelloControllerTest.java
- com.study.springBoot.HelloControllerTest
+com/study/springboot/web/IndexControllerTest.java
+ com.study.springboot.web.IndexControllerTest
+com/study/springboot/web/dto/HelloResponseDtoTest.java
+ com.study.springboot.web.dto.HelloResponseDtoTest
+com/study/springboot/web/PostsApiControllerTest.java
+ com.study.springboot.web.PostsApiControllerTest
+com/study/springboot/web/HelloControllerTest.java
+ com.study.springboot.web.HelloControllerTest
+com/study/springboot/domain/posts/PostsRepositoryTest.java
+ com.study.springboot.domain.posts.PostsRepositoryTest

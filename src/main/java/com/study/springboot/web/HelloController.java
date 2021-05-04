@@ -15,4 +15,13 @@ public class HelloController {
     public String hello(){
         return "hello";
     }
+    //HTTP Get의 요청을 받을 수 있는 API를 만들어 줌.
+    @GetMapping("/hello/dto")
+    //@RequestParam : 외부에서 API로 넘김 파라미터를 가져옴.
+    public HelloResponseDto hello(@RequestParam("name") String
+                                          name,
+                                  @RequestParam("amount") int
+                                          amount) {
+        return new HelloResponseDto(name,amount);
+    }
 }
