@@ -19,13 +19,15 @@ import org.springframework.http.*;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
@@ -88,22 +90,31 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    public void ReadPosts(){
-        Posts savePosts =postsRepository.save(Posts.builder()
+    @WithMockUser(roles="USER")
+    public void ReadPosts() throws Exception {
+        PostsSaveRequestDto saveRequestDto = PostsSaveRequestDto.builder()
                 .title("title")
                 .content("content")
                 .author("kimtaejun")
-                .build());
+                .build();
 
-        Long readId = savePosts.getId();
-        String url = "http://localhost:"+port +"api/v1/posts/"+readId;
+        String url = "http://localhost:" +port +"api/v1/posts/";
+
+        //when
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(saveRequestDto)))
+                .andExpect(status().isOk());
+        List<Posts> postsList = postsRepository.findAll();
+        url += postsList.get(0).getId();
+
+        MvcResult result = mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(saveRequestDto)))
+                .andExpect(status().isOk())
+                .andReturn();
 
 
-        PostsResponseDto responseObject = restTemplate.getForObject(url, PostsResponseDto.class);
-
-        assertThat(responseObject.getTitle()).isEqualTo("title");
-        assertThat(responseObject.getContent()).isEqualTo("content");
-        assertThat(responseObject.getAuthor()).isEqualTo("kimtaejun");
     }
 
     @Test
@@ -142,20 +153,18 @@ public class PostsApiControllerTest {
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
 
+        //then
         List<Posts> postsList = postsRepository.findAll();
         assertThat(postsList.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(postsList.get(0).getContent()).isEqualTo(expectedContent);
 
-        //then
-        List<Posts> all = postsRepository.findAll();
-        assertThat(all.get(0).getTitle()).isEqualTo(title);
-        assertThat(all.get(0).getContent()).isEqualTo(content);
 
     }
 
     //Delete
     @Test
-    public void PostsDelete(){
+    @WithMockUser(roles="USER")
+    public void PostsDelete() throws Exception {
         //given
         String title = "test title";
         String content = "test content";
@@ -167,13 +176,13 @@ public class PostsApiControllerTest {
 
         String url = "http://localhost:" +port +"api/v1/posts";
 
-        //when
-        ResponseEntity<Long> saveResponseEntity = restTemplate.postForEntity(url,saveRequestDto, Long.class);
+        //save
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(saveRequestDto)))
+                .andExpect(status().isOk());
 
 
-        //then
-        assertThat(saveResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(saveResponseEntity.getBody()).isGreaterThan(0L);
 
         //저장 확인
         List<Posts> postsList = postsRepository.findAll();
@@ -184,7 +193,11 @@ public class PostsApiControllerTest {
 
         url +="/"+deleteId;
 
-        restTemplate.delete(url);
+//        restTemplate.delete(url);
+        mvc.perform(delete(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(saveRequestDto)))
+                .andExpect(status().isOk());
 
         List<Posts> postsList2 = postsRepository.findAll();
         assertThat(postsList2.size()).isEqualTo(0);
