@@ -1,17 +1,16 @@
 language: java
 jdk:
-  - openjdk8
+  - openjdk15
 
 branches:
   only:
     - master
 
-
 # Travis CI 서버의 Home
 cache:
   directories:
-    - '$Home/ .m2/repository'
-    - '$Home/ .gradle'
+    - '$Home/.m2/repository'
+    - '$Home/.gradle'
 
 
 script: "./gradlew clean build"
@@ -20,4 +19,4 @@ script: "./gradlew clean build"
 notifications:
   email:
     recipients:
-      - kimtaejun9705@gmail.com  
+      - "kimtaejun9705@gmail.com"
