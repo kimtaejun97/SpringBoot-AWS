@@ -1,0 +1,7 @@
+## Ch7. 코드가 푸시되면 자동으로 배포해 보자.
+*********
+
+🗒 ‍목차
+====
+### [1. CI & CD 소개](1.CI%20&%20CD%20소개.md)
+### [2. Travis CI와 AWS S3, CodeDeploy 연동하기](2.Travis%20CI와%20AWS%20S3,%20CodeDeploy%20연동하기.md)
