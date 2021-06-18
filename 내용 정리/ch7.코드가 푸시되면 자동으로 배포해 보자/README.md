@@ -3,5 +3,6 @@
 
 🗒 ‍목차
 ====
-### [1. CI & CD 소개](1.CI%20&%20CD%20소개.md)
-### [2. Travis CI와 AWS S3, CodeDeploy 연동하기](2.Travis%20CI와%20AWS%20S3,%20CodeDeploy%20연동하기.md)
+### [1. CI & CD 소개,](1.CI%20&%20CD%20소개.md)
+### [2. Travis CI와 AWS S3, CodeDeploy 연동하기,](2.Travis%20CI와%20AWS%20S3,%20CodeDeploy%20연동하기.md)
+### [3. 배포 자동화 구성.](3.배포%20자동화%20구성.md)
