@@ -22,14 +22,25 @@ before_deploy:
 
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY
+    access_key_id: $AWS_ACCESS_KEY  #Travis repo setting
     secret_access_key: $AWS_SECRET_KEY
-    bucket: springaws-build
+    bucket: springaws-build #S3 버킷 이름.
     region: ap-northeast-2
     skip_cleanup: true
     acl: private
     local_dir: deploy
     wait-untill-deployed: true
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: springaws-build
+    key: SpringBoot-AWS.zip
+    bundle_type: zip
+    application: spring-aws-webservice #CodeDeploy 애플리케이션
+    deployment_group: spring-aws-webservice-group #CodeDeploy 배포 그룹
+    region: ap-northeast-2
+    wait_until-deployed: true
 
 # CI 실행 완료 시 메일로 알람.
 notifications:
