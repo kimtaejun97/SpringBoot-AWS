@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app2/step2/zip/
+    destination: /home/ec2-user/app2/step3/zip/
     overwirte: yes
 
 permissions:
@@ -12,7 +12,17 @@ permissions:
     group: ec2-user
 
 hooks:
+  AfterInstall:
+    - location: stop.sh # 연결되어 있지 않은 스프링 부트 종료.
+      timeout: 60
+      runas: ec2-user
+
   ApplicationStart:
     - location: deploy.sh
+      timeout: 60
+      runas: ec2-user
+
+  ValidateService:
+    - location: health.sh # 정상 실행 여부 확인.
       timeout: 60
       runas: ec2-user
