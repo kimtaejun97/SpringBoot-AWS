@@ -1,4 +1,4 @@
-REPOSITORY=/home/ec2-user/app2/step2
+REPOSITORY=/home/ec2-user/app2/step3
 PROJECT_NAME=SpringBoot-AWS
 
 echo "> Build 파일 복사"
