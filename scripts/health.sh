@@ -24,7 +24,7 @@ do
     break
   else
     echo "> Health Check의 응답을 알 수 없거나 실행 상태가 아닙니다."
-    ehco "> Health Check : ${RESPONSE}"
+    echo "> Health Check : ${RESPONSE}"
   fi
 
   if [ ${RETRY_COUNT} -eq 10 ]
@@ -34,6 +34,6 @@ do
     exit 1
   fi
 
-  ehco "> Health Check 실패. 재시도..."
+  echo "> Health Check 실패. 재시도..."
   sleep 10
 done
