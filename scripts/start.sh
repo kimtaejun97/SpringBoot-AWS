@@ -4,7 +4,7 @@ ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source ${ABSDIR}/profile.sh
 
-REPOSITORY=/gome/ec2-user/app2/step3
+REPOSITORY=/home/ec2-user/app2/step3
 PROJECT_NAME=SpringBoot-AWS
 
 echo "> Build 파일 복사"
