@@ -5,7 +5,7 @@ ABSDIR=$(dirname $ABSPATH)
 source ${ABSDIR}/profile.sh
 source ${ABSDIR}/switch.sh
 
-IDLE_PORT=$(fine_idle_port)
+IDLE_PORT=$(find_idle_port)
 
 echo "> Health Check Start!"
 echo "> IDLE_PORT: $IDLE_PORT"
@@ -17,7 +17,7 @@ do
   RESPONSE=$(curl -s http://localhost:${IDLE_PORT}/profile)
   UP_COUNT=$(echo ${RESPONSE} | grep 'real' | wc -1)
 
-  if [ ${UP_COUNT} -ge 1]
+  if [ ${UP_COUNT} -ge 1 ]
   then
     echo "> Health Check 성공"
     switch_proxy
